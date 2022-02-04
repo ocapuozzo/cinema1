@@ -1,0 +1,30 @@
+@startuml
+class Film{
+titre:string
+note:int
+afficheNom:string
+resume:string
+
+}
+class Personne{
+name:string
+prenom:string
+anneeNaissance:date
+photo:img
+
+
+}
+class Role{
+nom:string
+}
+class Vote{
+like:boolean
+}
+
+Film "filmsRealises 1..*" - "1 realisateur" Personne :"\t\t\t\t\t\t\t\t"
+Personne "1 acteur" -- "1..*"Role :"\t\t"
+Film "1" -- "*" Vote
+Film "1" - "1..*" Role
+
+hide circle
+@enduml

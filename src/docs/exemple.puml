@@ -1,0 +1,15 @@
+@startuml
+class Voiture {
+ name
+}
+
+class Personne {
+}
+
+Voiture "0..1" - "3..4" Roue :"\t\t\t"
+Personne "1 conducteur" -- "*" Voiture :"\t\t\t\t\t"
+Voiture"*" -- "passagers  *"Personne :"\t\t"
+
+hide circle
+
+@enduml

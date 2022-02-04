@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header-css (title='Films')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main class="container">
+<h1 th:text="#{the.films(${#lists.size(films)})}">Les films</h1>
+<p th:text="${films[0].realisateur.nom}"></p>
+<img th:src="@{'images/affiches/' + 'f0006.jpg'}" height="200" width="142">
+</main>
+
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>
