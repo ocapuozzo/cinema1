@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Film {
     private String titre;
-    private float note;
+    private Float note;
     private String afficheNom;
     private String resume;
     private Personne realisateur;
@@ -32,8 +32,18 @@ public class Film {
         this.titre = titre;
     }
 
-    public float getNote() {
-        return note;
+    /**
+     * retourne le pourcentage de like parmi les votes
+     * @return
+     */
+    public Float getNote() {
+        float nLike = 0;
+        for (int i = 0; i < this.votes.size(); i++) {
+            if (this.votes.get(i).isLike()) {
+                nLike++;
+            }
+        }
+        return (float) (nLike/this.votes.size() * 100);
     }
 
     //public void setNote(float note) {

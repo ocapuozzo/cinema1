@@ -8,6 +8,8 @@
 
 <main class="container">
 
+  <h1 th:text="#{hello} + '!'">Hello !</h1>
+
 <div th:switch="${#strings.toLowerCase(name)}">
   <h1 th:case="'null'" th:text="#{hello} + '!'">Hello !</h1>
   <h1 th:case="null" th:text="'The null pointer !'">Hello !</h1>

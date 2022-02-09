@@ -8,8 +8,18 @@
 
 <main class="container">
 <h1 th:text="#{the.films(${#lists.size(films)})}">Les films</h1>
-<p th:text="${films[0].realisateur.nom}"></p>
-<img th:src="@{'images/affiches/' + 'f0006.jpg'}" height="200" width="142">
+  <div th:each="film : ${films}" class="card" style="width: 142px; display: inline-block">
+    <img src="..." th:src="'images/affiches/'+ ${film.afficheNom}" class="card-img-top" height="200" width="142" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${film.titre}">Card title</h5>
+      <p th:text="'note : ' + ${#numbers.formatDecimal(film.note,3,1)}"></p>
+<!--  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+      <a href="#" class="btn btn-primary" th:text="#{more}">vue détail</a>
+    </div>
+  </div>
+
+<p th:text="'Note du premier film : ' + ${films[0].note}"></p>
+<!--<img th:src="@{'images/affiches/' + 'f0006.jpg'}" height="200" width="142">-->
 </main>
 
 <div th:replace="fragments/footer:: footer"/>

@@ -24,5 +24,13 @@ public class FilmController {
     model.addAttribute("films", films);
     return "film/index";
   }
+//
+//  @GetMapping("/film")
+//  public String detail(Model model) {
+//    List<Film> films;
+//    films = cinemaService.getFilms();
+//    model.addAttribute("films", films);
+//    return "film/index";
+//  }
 
 }

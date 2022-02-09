@@ -1,7 +1,7 @@
 @startuml
 class Film{
 titre:string
-note:int
+/note:float
 afficheNom:string
 resume:string
 
