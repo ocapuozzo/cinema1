@@ -2,6 +2,7 @@ package org.greta94.cinema.service;
 
 import org.greta94.cinema.model.Film;
 import org.greta94.cinema.model.Role;
+import org.greta94.cinema.model.User;
 import org.springframework.stereotype.Service;
 import org.greta94.cinema.model.Personne;
 
@@ -25,8 +26,9 @@ public class CinemaDataSource {
        // film.setNote(3.8f);
         film.setAfficheNom("f0001.jpg");
         Random rand = new Random();
+        User toto = new User("toto");
         for (int i = 0; i < 100; i++) {
-            film.addVote(rand.nextBoolean());
+            film.addVote(rand.nextBoolean(), toto);
         }
         films.add(film);
         personne = new Personne();
@@ -81,7 +83,7 @@ public class CinemaDataSource {
         //film.setNote(4.4f);
         film.setAfficheNom("f0002.jpg");
         for (int i = 0; i < 500; i++) {
-            film.addVote(rand.nextBoolean());
+            film.addVote(rand.nextBoolean(), toto);
         }
         films.add(film);
         personne = new Personne();
@@ -138,4 +140,7 @@ public class CinemaDataSource {
         return this.personnes;
     }
 
+    public boolean canVote(Film film, User user) {
+        return !film.getVotes().stream().anyMatch(vote -> vote.getUser().getUserName().equals(user.getUserName()));
+    }
 }

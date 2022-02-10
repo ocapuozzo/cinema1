@@ -20,8 +20,11 @@ public class Film {
         this.votes = votes;
     }
 
-    public void addVote(boolean like){
-        this.votes.add(new Vote(like, this));
+    // addVote est une méthode d'instance, donc elle est toujours
+    // appelée à partir d'une référence à un objet (this)
+    public void addVote(boolean like, User user){
+        Vote unVote = new Vote(like, this, user);
+        this.votes.add(unVote);
     }
 
     public String getTitre() {
@@ -37,13 +40,49 @@ public class Film {
      * @return
      */
     public Float getNote() {
-        float nLike = 0;
+        float nLike = this.votes.stream().filter(vote -> vote.isLike()).count();
+        return (float) (nLike/this.votes.size() * 100);
+
+/*
+        LocalDateTime before = LocalDateTime.now();
         for (int i = 0; i < this.votes.size(); i++) {
-            if (this.votes.get(i).isLike()) {
+            Vote vote = this.votes.get(i);
+            if (vote.isLike()) {
                 nLike++;
             }
         }
-        return (float) (nLike/this.votes.size() * 100);
+        LocalDateTime after = LocalDateTime.now();
+        long temps= ChronoUnit.MILLIS.between(before, after);
+        System.out.println("Temps de calcul en millisecondes boucle for :" + temps);
+
+
+        for ( Vote vote: this.votes) {
+            if (vote.isLike()) {
+                nLike++;
+            }
+        }
+
+        before = LocalDateTime.now();
+        nLike= 0;
+        Iterator<Vote> iterator = this.votes.iterator();
+        while (iterator.hasNext()) {
+            Vote vote = iterator.next();
+            if (vote.isLike()) {
+                nLike++;
+            }
+        }
+        after = LocalDateTime.now();
+        temps= ChronoUnit.MILLIS.between(before, after);
+        System.out.println("Temps de calcul en millisecondes iterator :" + temps);
+*/
+        // structure de controle du flux d'exception : SEQ, ALTERNATIVE et BOUCLE
+//        before = LocalDateTime.now();
+//        nLike = this.votes.stream().filter(vote -> vote.isLike()).count();
+//        after = LocalDateTime.now();
+//        temps= ChronoUnit.MILLIS.between(before, after);
+//        System.out.println("Temps de calcul en millisecondes stream :" + temps);
+
+//        return (float) (nLike/this.votes.size() * 100);
     }
 
     //public void setNote(float note) {

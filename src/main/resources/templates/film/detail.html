@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header-css (title='Films')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main class="container">
+  <h1 th:text="${film.titre}">Le titre du film</h1>
+
+  <h2 th:text=" 'Nb acteurs : ' + ${#lists.size(film.acteurs)}"></h2>
+  <div th:each="role : ${film.acteurs}" style="display: inline-block; width: 15%" >
+    <img src="..." th:src="'/images/photos/'+ ${role.acteur.photo}" class="w-100"
+         alt="">
+    <p th:text="${role.name}"></p>
+  </div>
+  <div class="card" style="width: 50%;">
+    <img src="..." th:src="'/images/affiches/'+ ${film.afficheNom}" class="card-img-top"
+         th:alt="#{film.title}" alt="">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${film.titre}">Card title</h5>
+      <p th:text="'note : ' + ${#numbers.formatDecimal(film.note,2,1)}"></p>
+      <p class="card-text" th:text="${film.resume}"></p>
+
+    </div>
+  </div>
+</main>
+
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>

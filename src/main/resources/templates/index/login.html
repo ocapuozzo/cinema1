@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Page Index</title>
+  <div th:replace="fragments/header :: header-css (title='Index')"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header-nav"/>
+
+<main class="container" style="width:200px">
+  <h1 th:text="#{signin}"></h1>
+  <form action="/login" method="post">
+    <div class="mb-3">
+      <label for="idlogin" class="form-control" th:text="#{username}">username</label>
+      <input type="text" class="form-control" name="username" id="idlogin" aria-describedby="username">
+      <div id="username" class="form-text" th:text="#{username.helper}">Please your username</div>
+    </div>
+       <button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button>
+  </form>
+</main>
+
+<div th:replace="fragments/footer:: footer"/>
+</body>
+</html>
